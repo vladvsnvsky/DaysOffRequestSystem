@@ -3,44 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!-- TODO: Look over fragments & Bootstrap OR Tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add other necessary links or scripts -->
 </head>
-<body>
-<!-- TODO: a editable table with all employees (challenge paging)-->
-<table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>email</th>
-            <th>current role</th>
-            <th>select new role</th>
-        </tr>
+<body class="bg-gray-100 p-6">
+<table class="min-w-full table-auto bg-white shadow-md rounded-lg">
+    <thead class="bg-gray-200">
+    <tr>
+        <th class="px-4 py-2">id</th>
+        <th class="px-4 py-2">username</th>
+        <th class="px-4 py-2">email</th>
+        <th class="px-4 py-2">current role</th>
+        <th class="px-4 py-2">select new role</th>
+    </tr>
     </thead>
     <tbody>
-    <tr th:each="employee : ${employees}">
-        <form th:action="@{/admin}" th:object="${user}" method="post">
+    <tr th:each="employee : ${employees}" class="border-t border-gray-300">
+        <form th:action="@{/admin}" th:object="${user}" method="post" class="w-full">
             <input type="hidden" name="userId" th:value="${employee.id}" />
-            <td th:text="${employee.id}"></td>
-            <td th:text="${employee.username}"></td>
-            <td th:text="${employee.email}"></td>
-            <!-- A list with all employees in this cell, instated of the below line -->
-            <td>
+            <td class="px-4 py-2" th:text="${employee.id}"></td>
+            <td class="px-4 py-2" th:text="${employee.username}"></td>
+            <td class="px-4 py-2" th:text="${employee.email}"></td>
+            <td class="px-4 py-2">
                 <ul>
-                    <p th:each="role : ${employee.roles}" th:text="${role.getName()}"></p>
+                    <p th:each="role : ${employee.roles}" th:text="${role.getName()}" class="list-disc list-inside"></p>
                 </ul>
             </td>
-            <td>
-                <select  title="Select a role" id="roles" name="roles" th:field="*{roles}" multiple>
+            <td class="px-4 py-2">
+                <select title="Select a role" id="roles" name="roles" th:field="*{roles}" multiple class="block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                     <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
                 </select>
             </td>
-            <td>
-                <button type="submit">Change Role</button>
+            <td class="px-4 py-2">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Change Role</button>
             </td>
         </form>
     </tr>
     </tbody>
 </table>
+<!-- Add other content or scripts -->
 </body>
 </html>

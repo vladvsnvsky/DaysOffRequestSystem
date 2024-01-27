@@ -1,0 +1,86 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+<!--    <title>Collapsible Menu</title>-->
+<!--</head>-->
+
+<!--<body class="flex">-->
+
+<!--&lt;!&ndash; Sidebar &ndash;&gt;-->
+<!--<div th:replace="fragments/componenets::side-menu(menuItems=${menuItems})"></div>-->
+
+<!--&lt;!&ndash; Main Content &ndash;&gt;-->
+<!--<div class="flex-1 p-4">-->
+<!--    <div th:replace="fragments/componenets::top-bar('Approve Days Off Dashboard')"></div>-->
+
+<!--    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">-->
+<!--        <div th:each="request : ${approved_requests}" class="bg-white p-6 mb-6 rounded-lg shadow-md flex justify-between items-center">-->
+<!--            <div>-->
+<!--                <p><strong>ID:</strong> <span th:text="${request.id}"></span></p>-->
+<!--                <p><strong>Employee:</strong> <span th:text="${request.user.username}"></span></p>-->
+<!--                <p><strong>Start Date:</strong> <span th:text="${request.startDate}"></span></p>-->
+<!--                <p><strong>End Date:</strong> <span th:text="${request.endDate}"></span></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Paginator &ndash;&gt;-->
+<!--    <div class="flex justify-between border-t border-gray-300 pt-4">-->
+<!--        <a href="?page=prev" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none">Pagina Anterioară</a>-->
+<!--        <a href="?page=next" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none">Pagina Următoare</a>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Collapsible Menu</title>
+</head>
+
+<body class="flex min-h-screen bg-gray-100">
+
+<!-- Sidebar -->
+<div class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 fixed inset-y-0 left-0">
+    <!-- Sidebar -->
+    <div th:replace="fragments/componenets::side-menu(menuItems=${menuItems})"></div>
+</div>
+
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col ml-64">
+    <!-- Top Bar -->
+    <header class="bg-white shadow-md p-4">
+        <!-- Top bar content (replace with your Thymeleaf fragment) -->
+        <div th:replace="fragments/componenets::top-bar('Approve Days Off Dashboard')"></div>
+    </header>
+
+    <!-- Content -->
+    <main class="flex-1 overflow-y-auto p-4">
+        <!-- Your main content goes here -->
+        <div th:each="request : ${approved_requests}" class="bg-white p-6 mb-6 rounded-lg shadow-md">
+            <p><strong>ID:</strong> <span th:text="${request.id}"></span></p>
+            <p><strong>Employee:</strong> <span th:text="${request.user.username}"></span></p>
+            <p><strong>Start Date:</strong> <span th:text="${request.startDate}"></span></p>
+            <p><strong>End Date:</strong> <span th:text="${request.endDate}"></span></p>
+        </div>
+
+        <!-- Paginator -->
+        <div class="flex justify-between border-t border-gray-300 pt-4">
+            <a href="?page=prev" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none">Pagina Anterioară</a>
+            <a href="?page=next" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none">Pagina Următoare</a>
+        </div>
+    </main>
+</div>
+</body>
+</html>
+

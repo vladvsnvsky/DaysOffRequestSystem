@@ -34,11 +34,15 @@ public class DataInitializer implements ApplicationRunner {
     private RoleService roleService;
     private final String adminEmail = "admin@admin.com";
     private final Role adminRole = Role.MANAGE_ACCOUNTS;
+    private final String testEmail = "test1@gmail.com";
+    private final Role testRole = Role.AUTH;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         boolean adminExists = userService.findByEmail(adminEmail).isPresent();
         boolean rolesExist = roleService.findByName(adminRole).isPresent();
+
+        boolean testExists = userService.findByEmail(testEmail).isPresent();
 
         boolean insertConditions = adminExists && rolesExist;
 
@@ -50,6 +54,11 @@ public class DataInitializer implements ApplicationRunner {
         admin.setUsername("admin");
         admin.setPassword("pass");
         admin.setEmail(adminEmail);
+
+        UserEntity test = new UserEntity();
+        test.setUsername("test1");
+        test.setPassword("test1");
+        test.setEmail(testEmail);
 
         /* Default roles */
         for (Role value : Role.values()) {
@@ -67,5 +76,10 @@ public class DataInitializer implements ApplicationRunner {
 
         admin.setRoles(roles);
         userService.register(admin);
+        roles.clear();
+
+        Optional<RoleEntity> optTestRole = roleService.findByName(Role.AUTH);
+        RoleEntity roleTest = optTestRole.orElseThrow(() -> new Exception("Role AUTH does not exist"));
+        test.setRoles(roles);
     }
 }

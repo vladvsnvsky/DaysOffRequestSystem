@@ -153,11 +153,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 ```
 
 Dacă în baza de date există un user cu un rol corupt vom primi umrmătoarele informații din sistemul de log:
-```properties
-2023-12-19T15:44:15.198+02:00 ERROR 12472 --- [nio-8080-exec-3] l.m.c.CustomAuthenticationSuccessHandler : current user does not have a proper role
-2023-12-19T15:44:15.199+02:00 ERROR 12472 --- [nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
-java.lang.IllegalStateException: Unexpected role: [EMPLOYEE]
+```properties
+2023-12-19T15:44:15.199+02:00 ERROR 12472 --- [nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.IllegalStateException:Unexpected role: [EMPLOYEE]
 ```
 
 ### Testare unitară

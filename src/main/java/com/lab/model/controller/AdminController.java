@@ -50,9 +50,16 @@ public class AdminController {
         roles.setUrl("/admin/roles");
         Icon rolesIcon = Icon.ROLE;
         rolesIcon.setColor(Icon.IconColor.INDIGO);
-
         roles.setIcon(rolesIcon);
         menu.add(roles);
+
+        MenuItem calendar = new MenuItem();
+        calendar.setName("Calendar");
+        calendar.setUrl("/admin/calendar");
+        Icon calendarIcon = Icon.CALENDAR;
+        calendarIcon.setColor(Icon.IconColor.INDIGO);
+        calendar.setIcon(calendarIcon);
+        menu.add(calendar);
 
         model.addAttribute("menuItems", menu);
         return "admin/dashboard";
@@ -96,6 +103,15 @@ public class AdminController {
         roles.setIcon(rolesIcon);
         menu.add(roles);
 
+        MenuItem calendar = new MenuItem();
+        calendar.setName("Calendar");
+        calendar.setUrl("/admin/calendar");
+        Icon calendarIcon = Icon.CALENDAR;
+        calendarIcon.setColor(Icon.IconColor.INDIGO);
+        calendar.setIcon(calendarIcon);
+
+        menu.add(calendar);
+
         model.addAttribute("menuItems", menu);
         model.addAttribute("employees", employees);
         model.addAttribute("roles", roleRepository.findAll());
@@ -104,6 +120,63 @@ public class AdminController {
         model.addAttribute("totalPages", userPage.getTotalPages());
         // model.addAttribute("icons", icons); /* This is optional now, and it will work ony if you modify the frontend too */
         return "admin/roles";
+    }
+
+    @GetMapping
+    @RequestMapping("/calendar")
+    public String openCalendar(Model model, @RequestParam(defaultValue = "0") int page){
+        final int PAGE_SIZE = 3; /* At the moment there is no way to change size from GUI, so this is hardcoded */
+        Page<UserEntity> userPage  = userService.findAll(page, PAGE_SIZE);
+        List<UserEntity> employees = userPage.getContent();
+        List<MenuItem> menu = new ArrayList<>();
+
+        /* IMPORTANT!
+         *  FontAwesome finally works in the frontend, and I don't know why. Therefore, the below implementation is
+         * not necessary anymore, neither is the one from the menu. I will not refactor the code, both because:
+         *  - I am proud of this mess.
+         *  - It's working now, but maybe it'll stop working again in the future. :)))
+         * */
+        HashMap<String, Icon> icons = new HashMap<>();
+        icons.put("ARROW_LEFT", Icon.ARROW_LEFT);
+        icons.put("ARROW_RIGHT", Icon.ARROW_RIGHT);
+        icons.put("DOUBLE_ARROW_LEFT", Icon.DOUBLE_ARROW_LEFT);
+        icons.put("DOUBLE_ARROW_RIGHT", Icon.DOUBLE_ARROW_RIGHT);
+
+        MenuItem home = new MenuItem();
+        home.setName("Home");
+        Icon homeIcon = Icon.HOME;
+        homeIcon.setColor(Icon.IconColor.INDIGO);
+
+        home.setIcon(homeIcon);
+        home.setUrl("/admin");
+        menu.add(home);
+
+        MenuItem roles = new MenuItem();
+        roles.setName("Roles");
+        roles.setUrl("/admin/roles");
+        Icon rolesIcon = Icon.ROLE;
+        rolesIcon.setColor(Icon.IconColor.INDIGO);
+
+        roles.setIcon(rolesIcon);
+        menu.add(roles);
+
+        MenuItem calendar = new MenuItem();
+        calendar.setName("Calendar");
+        calendar.setUrl("/admin/calendar");
+        Icon calendarIcon = Icon.CALENDAR;
+        calendarIcon.setColor(Icon.IconColor.INDIGO);
+        calendar.setIcon(calendarIcon);
+
+        menu.add(calendar);
+
+        model.addAttribute("menuItems", menu);
+        model.addAttribute("employees", employees);
+        model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("user", new UserEntity());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", userPage.getTotalPages());
+        // model.addAttribute("icons", icons); /* This is optional now, and it will work ony if you modify the frontend too */
+        return "calendar";
     }
 
     /* PatchMapping */

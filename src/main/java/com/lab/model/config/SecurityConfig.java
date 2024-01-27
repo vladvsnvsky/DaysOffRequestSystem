@@ -28,8 +28,9 @@ public class SecurityConfig {
                         .requestMatchers("/register")
                         .permitAll()
                         .requestMatchers("/admin/**").hasAuthority("MANAGE_ACCOUNTS")
+                        .requestMatchers("/daysOffRequests/**", "/calendar/**").hasAuthority("APPROVE_DAYS")
                         .requestMatchers("/images/public/**").permitAll()
-                        .requestMatchers("/home")
+                        .requestMatchers("/home","/calendar")
                         .authenticated()
                 )
 

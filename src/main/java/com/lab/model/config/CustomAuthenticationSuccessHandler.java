@@ -28,6 +28,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (authorities.contains(new SimpleGrantedAuthority(Role.AUTH.name()))) {
             logger.info("redirecting to home endpoint");
             response.sendRedirect("/home");
+        } else if (authorities.contains(new SimpleGrantedAuthority(Role.APPROVE_DAYS.name()))) {
+            logger.info("redirecting to days_off_requests endpoint");
+            response.sendRedirect("/daysOffRequests");
         } else {
             logger.error("current user does not have a proper role");
             throw new IllegalStateException("Unexpected role: " + authorities);
