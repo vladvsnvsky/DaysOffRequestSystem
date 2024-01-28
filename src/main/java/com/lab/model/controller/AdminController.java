@@ -61,6 +61,14 @@ public class AdminController {
         calendar.setIcon(calendarIcon);
         menu.add(calendar);
 
+        MenuItem myRequests = new MenuItem();
+        myRequests.setName("My Requests");
+        myRequests.setUrl("/myRequests");
+        Icon i = Icon.ARROW_RIGHT;
+        i.setColor(Icon.IconColor.INDIGO);
+        myRequests.setIcon(i);
+        menu.add(myRequests);
+
         model.addAttribute("menuItems", menu);
         return "admin/dashboard";
     }
@@ -112,6 +120,14 @@ public class AdminController {
 
         menu.add(calendar);
 
+        MenuItem myRequests = new MenuItem();
+        myRequests.setName("My Requests");
+        myRequests.setUrl("/myRequests");
+        Icon i = Icon.ARROW_RIGHT;
+        i.setColor(Icon.IconColor.INDIGO);
+        myRequests.setIcon(i);
+        menu.add(myRequests);
+
         model.addAttribute("menuItems", menu);
         model.addAttribute("employees", employees);
         model.addAttribute("roles", roleRepository.findAll());
@@ -130,12 +146,6 @@ public class AdminController {
         List<UserEntity> employees = userPage.getContent();
         List<MenuItem> menu = new ArrayList<>();
 
-        /* IMPORTANT!
-         *  FontAwesome finally works in the frontend, and I don't know why. Therefore, the below implementation is
-         * not necessary anymore, neither is the one from the menu. I will not refactor the code, both because:
-         *  - I am proud of this mess.
-         *  - It's working now, but maybe it'll stop working again in the future. :)))
-         * */
         HashMap<String, Icon> icons = new HashMap<>();
         icons.put("ARROW_LEFT", Icon.ARROW_LEFT);
         icons.put("ARROW_RIGHT", Icon.ARROW_RIGHT);
@@ -168,6 +178,14 @@ public class AdminController {
         calendar.setIcon(calendarIcon);
 
         menu.add(calendar);
+
+        MenuItem myRequests = new MenuItem();
+        myRequests.setName("My Requests");
+        myRequests.setUrl("/myRequests");
+        Icon i = Icon.ARROW_RIGHT;
+        i.setColor(Icon.IconColor.INDIGO);
+        myRequests.setIcon(i);
+        menu.add(myRequests);
 
         model.addAttribute("menuItems", menu);
         model.addAttribute("employees", employees);

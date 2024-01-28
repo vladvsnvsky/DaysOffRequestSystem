@@ -14,7 +14,7 @@
 
 <div class="flex-1 p-4 ml-32">
     <div class="max-w-lg mx-auto mt-10">
-        <form action="calendar.html" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form th:action="@{/calendar}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="startDate">
                     Start Date:
@@ -30,10 +30,10 @@
             </div>
 
             <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="reason">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
                     Reason for Days Off (optional):
                 </label>
-                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="reason" name="reason"></textarea>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" name="message"></textarea>
             </div>
 
             <div class="flex items-center justify-between">
@@ -45,47 +45,9 @@
     </div>
 </div>
 
+
+
 </body>
 
-<!--<main class="flex-1 p-4">-->
-<!--    <div class="max-w-lg mx-auto mt-10">-->
-<!--        <form action="calendar.html" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">-->
-<!--            <div class="mb-4">-->
-<!--                <label class="block text-gray-700 text-sm font-bold mb-2" for="startDate">-->
-<!--                    Start Date:-->
-<!--                </label>-->
-<!--                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" id="startDate" name="startDate" required>-->
-<!--            </div>-->
 
-<!--            <div class="mb-4">-->
-<!--                <label class="block text-gray-700 text-sm font-bold mb-2" for="endDate">-->
-<!--                    End Date:-->
-<!--                </label>-->
-<!--                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" id="endDate" name="endDate" required>-->
-<!--            </div>-->
-
-<!--            <div class="mb-6">-->
-<!--                <label class="block text-gray-700 text-sm font-bold mb-2" for="reason">-->
-<!--                    Reason for Days Off (optional):-->
-<!--                </label>-->
-<!--                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="reason" name="reason"></textarea>-->
-<!--            </div>-->
-
-<!--            <div class="flex items-center justify-between">-->
-<!--                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">-->
-<!--                    Submit Request-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</main>-->
-
-<!--<footer class="bg-blue-500 text-white p-4 text-center">-->
-<!--    <p>Days Off Request System</p>-->
-<!--</footer>-->
-
-<!--&lt;!&ndash; Optional JavaScript &ndash;&gt;-->
-<!--&lt;!&ndash; Tailwind CSS is mostly utility-first so it might not need additional JS for styling &ndash;&gt;-->
-
-<!--</body>-->
 </html>

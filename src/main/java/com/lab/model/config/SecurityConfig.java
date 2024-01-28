@@ -28,10 +28,9 @@ public class SecurityConfig {
                         .requestMatchers("/register")
                         .permitAll()
                         .requestMatchers("/admin/**").hasAuthority("MANAGE_ACCOUNTS")
-                        .requestMatchers("/daysOffRequests/**", "/calendar/**").hasAuthority("APPROVE_DAYS")
+                        .requestMatchers("/daysOffRequests/**").hasAuthority("APPROVE_DAYS")
                         .requestMatchers("/images/public/**").permitAll()
-                        .requestMatchers("/home","/calendar")
-                        .authenticated()
+                        .requestMatchers("/home","/calendar/**", "/myRequests/**").authenticated()
                 )
 
                 /*Change of the login page */
